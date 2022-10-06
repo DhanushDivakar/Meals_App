@@ -41,10 +41,24 @@ class _MyAppState extends State<MyApp> {
           return false;
         }
         return true;
-
-
       }).toList();
     });
+  }
+
+  void _toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoritedMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      setState(() {
+        _favoritedMeals.removeAt(existingIndex);
+      });
+    } else {
+      _favoritedMeals.add(DUMMY_MEALS.firstWhere((meal) => meal.id == mealId));
+    }
+  }
+
+  bool _isMealFavorite(String id) {
+    return _favoritedMeals.any((meal) => meal.id == id);
   }
 
   @override
@@ -84,8 +98,9 @@ class _MyAppState extends State<MyApp> {
         '/': (ctx) => TabsScreen(_favoritedMeals),
         CategoryMealsScreen.routeName: (ctx) =>
             CategoryMealsScreen(_availableMeals),
-        MealDetailScreen.routeName: (ctx) => MealDetailScreen(),
-        FliterScreen.routeName: (ctx) => FliterScreen(_filters,_setFilters),
+        MealDetailScreen.routeName: (ctx) =>
+            MealDetailScreen(_toggleFavorite, _isMealFavorite),
+        FliterScreen.routeName: (ctx) => FliterScreen(_filters, _setFilters),
       },
       // onGenerateRoute: (settings) {
       //   print(settings.arguments);
