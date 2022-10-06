@@ -25,11 +25,11 @@ class Meal {
   final Complexity complexity;
   final Affordability affordability;
   final bool isGlutenFree;
-  final bool isLactosefree;
+  final bool isLactoseFree;
   final bool isVegan;
   final bool isVegetarian;
 
-  Meal({@required this.id,@required this.categories,@required this.title,@required this.imageUrl,@required this.ingredients,@required this.steps,@required this.duration,@required this.complexity,@required this.affordability, this.isGlutenFree,@required this.isLactosefree,@required this.isVegan,@required this.isVegetarian});
+  const Meal({@required this.id,@required this.categories,@required this.title,@required this.imageUrl,@required this.ingredients,@required this.steps,@required this.duration,@required this.complexity,@required this.affordability, this.isGlutenFree,@required this.isLactoseFree,@required this.isVegan,@required this.isVegetarian});
 
 
 }
